@@ -1,0 +1,13 @@
+# Instead of FROM python:3.11-alpine
+FROM localhost:32000/python-ci:lab
+
+RUN addgroup -S app && adduser -S app -G app
+
+WORKDIR /app
+RUN pip install requests
+COPY python/app.py .
+
+RUN chown -R app:app /app
+USER app
+
+CMD ["python", "app.py"]

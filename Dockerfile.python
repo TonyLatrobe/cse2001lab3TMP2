@@ -1,0 +1,7 @@
+# Instead of FROM python:3.11-alpine
+FROM localhost:32000/python-ci:lab
+
+RUN pip install requests
+
+COPY python/app.py /app.py
+CMD ["python", "/app.py"]
